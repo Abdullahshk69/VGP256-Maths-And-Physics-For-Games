@@ -12,11 +12,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        const int charisma = 1 << 1;
-        const int fly = 1 << 2;
-        const int intelligence = 1 << 3;
-        const int invisible = 1 << 4;
-        const int magic = 1 << 5;
+        const int charisma = 1 << 0;
+        const int fly = 1 << 1;
+        const int intelligence = 1 << 2;
+        const int invisible = 1 << 3;
+        const int magic = 1 << 4;
         const int golden = charisma + fly + intelligence + invisible + magic;
         keyValue = new Dictionary<string, int>
         {

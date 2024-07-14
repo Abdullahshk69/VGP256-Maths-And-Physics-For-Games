@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
         if(other.tag == "Key")
         {
             attributes |= GameManager.Instance.GetKey(other.GetComponent<KeyAttacher>().key.keyTag);
+            Destroy(other.gameObject);
         }
         else if(other.tag == "Door")
         {
