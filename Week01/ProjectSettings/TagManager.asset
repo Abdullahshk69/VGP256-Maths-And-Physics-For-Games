@@ -25,6 +25,8 @@ TagManager:
   - INTELLIGENCE_DOOR
   - FLY_&_CHARISMA_DOOR
   - GOLDEN_KEY
+  - Door
+  - Key
   layers:
   - Default
   - TransparentFX
