@@ -1,0 +1,6 @@
+﻿  EquationsOfMotion.cpp
+  main.cpp
+C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\EquationsOfMotion.h(42,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\main.cpp(10,21): message : see reference to function template instantiation 'void EquationsOfMotion::Equation1<const char(&)[3],int,int,int>(const char (&)[3],int &&,int &&,int &&)' being compiled
+  Generating Code...
+  Lab2.vcxproj -> C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\x64\Debug\Lab2.exe
