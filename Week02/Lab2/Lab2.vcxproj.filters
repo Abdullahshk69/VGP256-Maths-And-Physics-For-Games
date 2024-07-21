@@ -27,7 +27,7 @@
     <ClCompile Include="Polynomial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Derivation.cpp">
+    <ClCompile Include="Derivative.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +50,7 @@
     <ClInclude Include="Polynomial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Derivation.h">
+    <ClInclude Include="Derivative.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

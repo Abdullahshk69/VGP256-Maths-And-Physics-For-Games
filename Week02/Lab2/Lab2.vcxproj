@@ -127,14 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Derivation.cpp" />
+    <ClCompile Include="Derivative.cpp" />
     <ClCompile Include="Forces.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Polynomial.cpp" />
     <ClCompile Include="StringToExpression.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Derivation.h" />
+    <ClInclude Include="Derivative.h" />
     <ClInclude Include="EquationsOfMotion.h" />
     <ClInclude Include="Forces.h" />
     <ClInclude Include="Polynomial.h" />

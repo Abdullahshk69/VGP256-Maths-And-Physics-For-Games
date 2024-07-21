@@ -9,13 +9,15 @@ public:
 	Polynomial();
 
 	// Getter
-	std::vector<Term> GetTerm();
+	Polynomial GetPolynomial();
+	std::vector<Term> GetPolynomialTerms();
 
 	// Setter
 	
 	// Functions
 	void AddTerm(Term term);
 	void AddTerm(std::vector<Term> terms);
+	int CalculateX(int x);
 
 	void ShowPolynomialEquation();
 

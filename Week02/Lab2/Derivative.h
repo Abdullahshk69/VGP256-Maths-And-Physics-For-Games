@@ -1,7 +1,7 @@
 #pragma once
 #include "Polynomial.h"
 
-class Derivation
+class Derivative
 {
 public:
 	Polynomial SingleDerivative(Polynomial poly);

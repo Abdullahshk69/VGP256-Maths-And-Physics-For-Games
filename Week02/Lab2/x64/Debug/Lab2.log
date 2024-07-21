@@ -1,2 +1,6 @@
 ﻿  Polynomial.cpp
+C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\Polynomial.cpp(33,16): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  StringToExpression.cpp
+  main.cpp
+  Generating Code...
   Lab2.vcxproj -> C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\x64\Debug\Lab2.exe

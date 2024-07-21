@@ -11,7 +11,7 @@ std::vector<Term> StringToExpression::ConvertToPolynomial(std::string input)
     // Clean the string first
     // Remove spaces
     input.erase(std::remove_if(input.begin(), input.end(), std::isspace), input.end());
-    std::cout << input <<std::endl;
+
     // Check the regex of the string
 
 
@@ -77,6 +77,7 @@ std::vector<Term> StringToExpression::ConvertToPolynomial(std::string input)
         {
             number.push_back(input[i]);
         }
+        term = { 0,0 };
     }
 
     return terms;

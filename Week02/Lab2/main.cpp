@@ -3,6 +3,7 @@
 #include "Polynomial.h"
 #include "EquationsOfMotion.h"
 #include "StringToExpression.h"
+#include "Derivative.h"
 
 void Q2();
 
@@ -10,8 +11,10 @@ int main()
 {
 	StringToExpression s;
 	Polynomial p;
-	p.AddTerm(s.ConvertToPolynomial("-3x^2+2x^3-1x^5"));
+	Derivative d;
+	p.AddTerm(s.ConvertToPolynomial("-3x^2 + 2x^3 - 1x^5 - 2"));
 	p.ShowPolynomialEquation();
+	d.SingleDerivative(p.GetPolynomial());
 	//Q2();
 }
 
