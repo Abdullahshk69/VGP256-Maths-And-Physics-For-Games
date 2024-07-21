@@ -15,6 +15,9 @@ public:
 	
 	// Functions
 	void AddTerm(Term term);
+	void AddTerm(std::vector<Term> terms);
+
+	void ShowPolynomialEquation();
 
 private:
 	std::vector<Term> terms;

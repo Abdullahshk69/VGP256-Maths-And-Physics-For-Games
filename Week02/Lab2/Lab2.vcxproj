@@ -127,11 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EquationsOfMotion.cpp" />
+    <ClCompile Include="Derivation.cpp" />
+    <ClCompile Include="Forces.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Polynomial.cpp" />
+    <ClCompile Include="StringToExpression.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Derivation.h" />
     <ClInclude Include="EquationsOfMotion.h" />
+    <ClInclude Include="Forces.h" />
+    <ClInclude Include="Polynomial.h" />
+    <ClInclude Include="StringToExpression.h" />
     <ClInclude Include="Term.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>
