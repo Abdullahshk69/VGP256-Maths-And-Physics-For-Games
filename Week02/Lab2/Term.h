@@ -9,7 +9,11 @@ struct Term
 
 	friend std::ostream& operator <<(std::ostream& os, const Term& term)
 	{
-		os << term.a << "x^" << term.e;
+		os << term.a;
+		if(term.e != 0)
+		{
+			os << "x^" << term.e;
+		}
 		return os;
 	}
 };

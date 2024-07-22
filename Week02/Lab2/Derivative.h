@@ -4,7 +4,7 @@
 class Derivative
 {
 public:
-	Polynomial SingleDerivative(Polynomial poly);
+	static Polynomial SingleDerivative(Polynomial poly);
 private:
 };
 

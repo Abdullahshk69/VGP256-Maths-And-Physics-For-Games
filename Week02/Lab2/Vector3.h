@@ -22,5 +22,16 @@ struct Vector3
 		os << "{ " << vector.x << ", " << vector.y << ", " << vector.z << " }";
 		return os;
 	}
+
+	friend std::istream& operator>>(std::istream& is, Vector3& vector)
+	{
+		std::cout << "x: ";
+		is >> vector.x;
+		std::cout << "y: ";
+		is >> vector.y;
+		std::cout << "z: ";
+		is >> vector.z;
+		return is;
+	}
 };
 

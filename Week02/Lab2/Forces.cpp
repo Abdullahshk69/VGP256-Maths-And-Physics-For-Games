@@ -1,6 +1,6 @@
 #include "Forces.h"
 
-void Forces::SetWeight(Vector3 weight)
+void Forces::SetWeight(float weight)
 {
     this->weight = weight;
 }
@@ -20,6 +20,10 @@ Vector3 Forces::GetResultingAccel()
         totalForce = totalForce + force;
     }
 
-    Vector3 acceleration = totalForce / 10.0f;
+    float mass = weight / 9.8f;
+
+    // f = ma
+    // a = f/m
+    Vector3 acceleration = totalForce / mass;
     return acceleration;
 }

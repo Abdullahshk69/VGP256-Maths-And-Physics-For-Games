@@ -41,6 +41,7 @@ inline void EquationsOfMotion::Equation1(Args&&... args)
 		float a = std::get<2>(arguments);
 		float t = std::get<3>(arguments);
 
+		// vf = vi + at
 		std::cout << "vf = " << vi + a * t << std::endl;
 	}
 
@@ -50,6 +51,7 @@ inline void EquationsOfMotion::Equation1(Args&&... args)
 		float a = std::get<2>(arguments);
 		float t = std::get<3>(arguments);
 
+		// vi = vf - at
 		std::cout << "vi = " << vf - a * t << std::endl;
 	}
 
@@ -59,6 +61,7 @@ inline void EquationsOfMotion::Equation1(Args&&... args)
 		float vi = std::get<2>(arguments);
 		float t = std::get<3>(arguments);
 
+		// a = (vf - vi) / t
 		std::cout << "a = " << (vf - vi) / t << std::endl;
 	}
 
@@ -68,6 +71,7 @@ inline void EquationsOfMotion::Equation1(Args&&... args)
 		float vi = std::get<2>(arguments);
 		float a = std::get<3>(arguments);
 
+		// t = (vf - vi) / a
 		std::cout << "t = " << (vf - vi) / a << std::endl;
 	}
 
@@ -96,6 +100,7 @@ inline void EquationsOfMotion::Equation2(Args && ...args)
 		float vi = std::get<1>(arguments);
 		float vf = std::get<2>(arguments);
 
+		// vavg = (vi + vf) / 2
 		std::cout << "vavg = " << (vi + vf) / 2 << std::endl;
 	}
 
@@ -104,6 +109,7 @@ inline void EquationsOfMotion::Equation2(Args && ...args)
 		float vavg = std::get<1>(arguments);
 		float vf = std::get<2>(arguments);
 
+		// vi = 2vavg - vf
 		std::cout << "vi = " << vavg * 2 - vf << std::endl;
 	}
 
@@ -112,6 +118,7 @@ inline void EquationsOfMotion::Equation2(Args && ...args)
 		float vavg = std::get<1>(arguments);
 		float vi = std::get<2>(arguments);
 
+		// vf = 2vavg - vi
 		std::cout << "vf = " << vavg * 2 - vi << std::endl;
 	}
 
@@ -168,8 +175,8 @@ inline void EquationsOfMotion::Equation3(Args && ...args)
 	else if (variableToFind == "t")
 	{
 		float deltaX = std::get<1>(arguments);
-		float vf = std::get<2>(arguments);
-		float vi = std::get<3>(arguments);
+		float vi = std::get<2>(arguments);
+		float vf = std::get<3>(arguments);
 
 		// t = 2deltaX / (vi + vf)
 		std::cout << "t = " << 2 * deltaX / (vi + vf) << std::endl;
@@ -222,7 +229,7 @@ inline void EquationsOfMotion::Equation4(Args && ...args)
 
 		// Using quadratic formula (simplified)
 		// t = (-vi + sqrt(vi^2 + 2a deltaX))/a
-		std::cout << "t = " << (-vi + sqrtf(vi ^ 2 + 2 * a * deltaX)) / a << std::endl;
+		std::cout << "t = " << (-vi + sqrtf(std::pow(vi, 2) + 2 * a * deltaX)) / a << std::endl;
 	}
 
 	else if (variableToFind == "a")
@@ -271,7 +278,7 @@ inline void EquationsOfMotion::Equation5(Args && ...args)
 		float deltaX = std::get<3>(arguments);
 
 		// vi^2 = vf^2 - 2 * a * deltaX
-		std::cout << "vi = " << sqrtf(abs(vf * vf - a * deltaX * 2)) << std::endl;
+		std::cout << "vi = " << sqrtf(abs(std::pow(vf, 2) - a * deltaX * 2)) << std::endl;
 	}
 
 	else if (variableToFind == "a")
@@ -281,7 +288,7 @@ inline void EquationsOfMotion::Equation5(Args && ...args)
 		float deltaX = std::get<3>(arguments);
 
 		// a = (vf^2-vi^2)/2deltaX
-		std::cout << "a = " << (vf ^ 2 - vi ^ 2) / 2 * deltaX << std::endl;
+		std::cout << "a = " << (std::pow(vf, 2) - std::pow(vi, 2)) / 2 * deltaX << std::endl;
 	}
 
 	else if (variableToFind == "deltaX")
@@ -291,7 +298,7 @@ inline void EquationsOfMotion::Equation5(Args && ...args)
 		float a = std::get<3>(arguments);
 
 		// deltaX = (vf^2-vi^2)/2a 
-		std::cout << "deltaX = " << (vf ^ 2 - vi ^ 2) / 2 * a << std::endl;
+		std::cout << "deltaX = " << (std::pow(vf, 2) - std::pow(vi, 2)) / 2 * a << std::endl;
 	}
 
 	else

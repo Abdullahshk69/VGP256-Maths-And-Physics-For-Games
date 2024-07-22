@@ -1,6 +1,9 @@
-﻿  Polynomial.cpp
-C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\Polynomial.cpp(33,16): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-  StringToExpression.cpp
+﻿  Forces.cpp
   main.cpp
+C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\main.cpp(430,8): warning C4101: 'weight': unreferenced local variable
+C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\EquationsOfMotion.h(232,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\main.cpp(292,23): message : see reference to function template instantiation 'void EquationsOfMotion::Equation4<const char(&)[7],float&,float&,float&>(const char (&)[7],float &,float &,float &)' being compiled
+C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\EquationsOfMotion.h(281,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\main.cpp(366,23): message : see reference to function template instantiation 'void EquationsOfMotion::Equation5<const char(&)[3],float&,float&,float&>(const char (&)[3],float &,float &,float &)' being compiled
   Generating Code...
   Lab2.vcxproj -> C:\Users\pc\UnityProjects\Maths And Physics For Games\Week02\Lab2\x64\Debug\Lab2.exe

@@ -7,6 +7,7 @@ std::vector<Term> StringToExpression::ConvertToPolynomial(std::string input)
     std::string number;
     std::vector<Term> terms;
     Term term;
+    bool hasPushed = false;
 
     // Clean the string first
     // Remove spaces
@@ -18,7 +19,7 @@ std::vector<Term> StringToExpression::ConvertToPolynomial(std::string input)
     // Modify checks
     // A term begins and ends based on a sign
     // use for loop to iterate the string
-    for (int i = 0; i < input.size(); i++)
+    for (int i = 0; i <= input.size(); i++)
     {
         // Check what type of value is it
         
@@ -47,6 +48,13 @@ std::vector<Term> StringToExpression::ConvertToPolynomial(std::string input)
                 term.a = std::stoi(number);
                 number = "";
             }
+
+            if (input[i + 1] != '^')
+            {
+                term.e = 1;
+                terms.push_back(term);
+                term = { 0,0 };
+            }
             continue;
         }
 
@@ -65,19 +73,24 @@ std::vector<Term> StringToExpression::ConvertToPolynomial(std::string input)
             term.e = std::stoi(number);
             terms.push_back(term);
             number = "";
+            hasPushed = true;
         }
-
-        /*else if (input[i] == '+' || input[i] == '-')
-        {
-            
-        }*/
 
         // It is a number
         else
         {
             number.push_back(input[i]);
         }
+
+        // if last number is x-less
+        if (input[i] == '\0' && !hasPushed)
+        {
+            term.a = std::stoi(number);
+            terms.push_back(term);
+        }
+        
         term = { 0,0 };
+        hasPushed = false;
     }
 
     return terms;
