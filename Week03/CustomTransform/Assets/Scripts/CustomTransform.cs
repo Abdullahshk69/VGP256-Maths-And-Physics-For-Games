@@ -7,8 +7,8 @@ public class CustomTransform : MonoBehaviour
     [SerializeField] Transform unityTransform;
     public Matrix4x4 matrix;
     [SerializeField] private Vector3 position;
-    [SerializeField] private Vector3 scale;
     [SerializeField] private Vector3 rotation;
+    [SerializeField] private Vector3 scale;
 
 
     private void Start()
