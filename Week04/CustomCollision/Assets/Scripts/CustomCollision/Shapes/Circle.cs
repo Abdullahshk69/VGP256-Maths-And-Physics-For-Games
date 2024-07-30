@@ -6,6 +6,7 @@ public class Circle : MonoBehaviour, IShape
 {
     private Vector2 center;
     [SerializeField] private float radius;
+    [SerializeField] private bool isTrigger;
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class Circle : MonoBehaviour, IShape
 
     public void DrawShape()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(center, radius);
     }
 

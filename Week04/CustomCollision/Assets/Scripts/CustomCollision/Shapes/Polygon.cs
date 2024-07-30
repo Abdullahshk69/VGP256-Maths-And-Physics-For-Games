@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Polygon : MonoBehaviour, IShape
 {
-    [SerializeField] private Vector3[] vertices;
+    [SerializeField] private Vector2[] vertices;
+    [SerializeField] private bool isTrigger;
 
     public float AddDistanceToMove()
     {
@@ -23,12 +24,12 @@ public class Polygon : MonoBehaviour, IShape
 
     public void DrawShape()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.green;
         for(uint i = 1; i< vertices.Length; i++)
         {
             Gizmos.DrawLine(vertices[i - 1], vertices[i]);
         }
-        Gizmos.DrawLine(vertices[0], vertices[vertices.Length - 1]);
+        Gizmos.DrawLine(vertices[0], vertices[^1]);
     }
 
     private void OnDrawGizmosSelected()
