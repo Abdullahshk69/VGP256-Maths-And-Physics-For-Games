@@ -1,35 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Polygon : MonoBehaviour, IShape
+public class Polygon : Shape
 {
     [SerializeField] private Vector2[] vertices;
-    [SerializeField] private bool isTrigger;
 
-    public float AddDistanceToMove()
+    private void Start()
+    {
+        AddCollisionToManager();
+    }
+
+    public override void AddCollisionToManager()
+    {
+        CollisionDetectionManager.instance.AddCollider(this);
+    }
+
+    public override float AddDistanceToMove()
     {
         throw new System.NotImplementedException();
     }
 
-    public bool CheckCollision<T>(T other) where T : IShape
+    public override bool CheckCollision<T>(T other)
     {
         throw new System.NotImplementedException();
     }
 
-    public float CheckHowMuchCollisionDistance<T>(T other) where T : IShape
+    public override float CheckHowMuchCollisionDistance<T>(T other)
     {
         throw new System.NotImplementedException();
     }
 
-    public void DrawShape()
+    public override void DrawShape()
     {
         Gizmos.color = Color.green;
         for(uint i = 1; i< vertices.Length; i++)
         {
-            Gizmos.DrawLine(vertices[i - 1], vertices[i]);
+            Gizmos.DrawLine(vertices[i - 1] + offset, vertices[i] + offset);
         }
-        Gizmos.DrawLine(vertices[0], vertices[^1]);
+        Gizmos.DrawLine(vertices[0] + offset, vertices[^1] + offset);
     }
 
     private void OnDrawGizmosSelected()

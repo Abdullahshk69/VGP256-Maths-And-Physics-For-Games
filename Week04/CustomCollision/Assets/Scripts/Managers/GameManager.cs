@@ -14,8 +14,9 @@ public class GameManager : MonoBehaviour
 
     // maybe use game manager to detect collision
 
-    private void Start()
+    private void Awake()
     {
+        Instance = this;
         KeyInventory = 0;    
     }
 

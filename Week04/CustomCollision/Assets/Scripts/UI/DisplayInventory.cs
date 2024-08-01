@@ -4,19 +4,24 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DisplayInventory : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI redKey;
-    [SerializeField] TextMeshProUGUI greenKey;
-    [SerializeField] TextMeshProUGUI blueKey;
+    [SerializeField] Image redKey;
+    [SerializeField] Image greenKey;
+    [SerializeField] Image blueKey;
 
     private void Start()
     {
-        redKey.color = Color.red;
-        greenKey.color = Color.green;
-        blueKey.color = Color.blue;
         EventManager.OnKeyPickup += UpdateAllKeyDisplays;
+
+        UpdateAllKeyDisplays();
+    }
+
+    private void Update()
+    {
+        UpdateAllKeyDisplays();
     }
 
     private void UpdateAllKeyDisplays()
@@ -26,16 +31,16 @@ public class DisplayInventory : MonoBehaviour
         UpdateKeyDisplay(ref blueKey, "Blue");
     }    
 
-    private void UpdateKeyDisplay(ref TextMeshProUGUI keyTextDisplay, string keyTag)
+    private void UpdateKeyDisplay(ref Image keyImage, string keyTag)
     {
         if ((GameManager.Instance.KeyInventory & KeyManager.instance.GetKey(keyTag)) != 0)
         {
-            keyTextDisplay.CrossFadeAlpha(255, 0.1f, false);
+            keyImage.CrossFadeAlpha(1.0f, 0.1f, true);
         }
 
         else
         {
-            keyTextDisplay.CrossFadeAlpha(100, 0.1f, false);
+            keyImage.CrossFadeAlpha(0.1f, 0.1f, true);
         }
     }
 }

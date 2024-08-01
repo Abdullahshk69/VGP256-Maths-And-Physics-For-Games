@@ -11,8 +11,9 @@ public class KeyManager : MonoBehaviour
     readonly int greenKey = 1 << 1;
     readonly int blueKey = 1 << 2;
 
-    private void Start()
+    private void Awake()
     {
+        instance = this;
         keyValues = new Dictionary<string, int>
         {
             { "Red", redKey },

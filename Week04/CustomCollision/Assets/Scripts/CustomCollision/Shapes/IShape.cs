@@ -8,4 +8,5 @@ public interface IShape
     public void DrawShape();
     public float AddDistanceToMove();
     public float CheckHowMuchCollisionDistance<T>(T other) where T : IShape;
+    public void AddCollisionToManager();
 }

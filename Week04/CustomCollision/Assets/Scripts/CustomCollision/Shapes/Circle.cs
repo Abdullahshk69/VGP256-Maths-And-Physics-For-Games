@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Circle : MonoBehaviour, IShape
+public class Circle : Shape
 {
     private Vector2 center;
     [SerializeField] private float radius;
-    [SerializeField] private bool isTrigger;
+    
 
     private void Start()
     {
         center = GetComponent<Transform>().position;
-
+        AddCollisionToManager();
     }
 
     private void Update()
@@ -19,29 +19,34 @@ public class Circle : MonoBehaviour, IShape
         
     }
 
-    public float AddDistanceToMove()
+    public override float AddDistanceToMove()
     {
         throw new System.NotImplementedException();
     }
 
-    public bool CheckCollision<T>(T other) where T : IShape
+    public override bool CheckCollision<T>(T other)
     {
         throw new System.NotImplementedException();
     }
 
-    public float CheckHowMuchCollisionDistance<T>(T other) where T : IShape
+    public override float CheckHowMuchCollisionDistance<T>(T other)
     {
         throw new System.NotImplementedException();
     }
 
-    public void DrawShape()
+    public override void DrawShape()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(center, radius);
+        Gizmos.DrawWireSphere(center + offset, radius);
     }
 
     void OnDrawGizmosSelected()
     {
         DrawShape();
+    }
+
+    public override void AddCollisionToManager()
+    {
+        CollisionDetectionManager.instance.AddCollider(this);
     }
 }
