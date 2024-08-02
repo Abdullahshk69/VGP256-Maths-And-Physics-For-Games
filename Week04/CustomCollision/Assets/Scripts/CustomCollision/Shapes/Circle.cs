@@ -6,17 +6,19 @@ public class Circle : Shape
 {
     private Vector2 center;
     [SerializeField] private float radius;
-    
+
+    public Vector2 Center { get { return center; } }
+    public float Radius { get { return radius; } }
 
     private void Start()
     {
-        center = GetComponent<Transform>().position;
+        center = transform.position;
         AddCollisionToManager();
     }
 
     private void Update()
     {
-        
+        center = transform.position;
     }
 
     public override float AddDistanceToMove()

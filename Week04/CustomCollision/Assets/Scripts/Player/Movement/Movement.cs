@@ -3,7 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+enum PlayerState
+{
+    IDLE,
+    RUN,
+    JUMP,
+    FALL
+}
+
+public class Movement : MonoBehaviour, ICollision
 {
     [SerializeField]
     float moveSpeed;
@@ -11,14 +19,22 @@ public class Movement : MonoBehaviour
     [SerializeField]
     Rigidbody2D rb;
 
+    [SerializeField]
+    SpriteRenderer sprite;
+
+    [SerializeField]
+    Animator animator;
+
     Vector2 moveVelocity;
 
     bool firstJump;
     bool grounded;
 
-    public void Move(InputAction.CallbackContext context)
+    
+
+    private void Start()
     {
-        moveVelocity = context.ReadValue<Vector2>();
+        
     }
 
     private void FixedUpdate()
@@ -31,6 +47,11 @@ public class Movement : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        UpdateAnimationState();
+    }
+
     public void Jump(InputAction.CallbackContext context)
     {
         if(context.phase == InputActionPhase.Started && grounded)
@@ -38,4 +59,54 @@ public class Movement : MonoBehaviour
             firstJump = true;
         }
     }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        moveVelocity = context.ReadValue<Vector2>();
+    }
+
+    private void UpdateAnimationState()
+    {
+        PlayerState state;
+
+        // Player is moving to the right
+        if (rb.velocity.x > 0f)
+        {
+            state = PlayerState.RUN;
+            sprite.flipX = false;
+        }
+
+        // Player is moving to the left
+        else if (rb.velocity.x < 0f)
+        {
+            state = PlayerState.RUN;
+            sprite.flipX = true;
+        }
+
+        // Player is idle
+        else
+        {
+            state = PlayerState.IDLE;
+        }
+
+        // Player is jumping
+        if (rb.velocity.y > 0.1f)
+        {
+            state = PlayerState.JUMP;
+        }
+
+        // Player is falling
+        else if (rb.velocity.y < -0.1f)
+        {
+            state = PlayerState.FALL;
+        }
+
+        animator.SetInteger("state", (int)state);
+    }
+
+    void ICollision.OnCustomCollisionEnter(Shape shape)
+    {
+        Debug.Log(shape);
+    }
+
 }
