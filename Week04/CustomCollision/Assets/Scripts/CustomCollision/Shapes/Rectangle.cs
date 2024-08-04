@@ -12,16 +12,27 @@ public class Rectangle : Shape
     public Vector2 V1 { get { return v1; } }
     public Vector2 V2 { get {  return v2; } }
 
+    public float Width { get { return Mathf.Abs(v2.x - v1.x); } }
+    public float Height { get { return Mathf.Abs(v2.y - v1.y); } }
+
     private void Start()
     {
-        center = transform.position;
-        previousCenter = transform.position;
-        //Vector2 temp1 = v1;
-        //v1 = center - (v1 + v2) / 2;
-        //v2 = center - (v2 + temp1) / 2;
+        if(TryGetComponent(out SpriteRenderer sprite))
+        {
+            Debug.Log("Bot left: " + sprite.sprite.bounds.min
+                + "\nTop Right: " + sprite.sprite.bounds.max);
 
-        v1 = center - v1;
-        v2 = center + v2;
+            v1 = sprite.sprite.bounds.min;
+            v2 = sprite.sprite.bounds.max;
+        }
+        //center = transform.position;
+        //previousCenter = transform.position;
+        ////Vector2 temp1 = v1;
+        ////v1 = center - (v1 + v2) / 2;
+        ////v2 = center - (v2 + temp1) / 2;
+
+        //v1 = center - v1;
+        //v2 = center + v2;
 
         AddCollisionToManager();
     }
@@ -34,12 +45,17 @@ public class Rectangle : Shape
         previousCenter = center;
     }
 
+    public Vector2 GetCenter()
+    {
+        return ((v1 + v2) / 2) + offset;
+    }
+
     public override void AddCollisionToManager()
     {
         CollisionDetectionManager.instance.AddCollider(this);
     }
 
-    public override float AddDistanceToMove()
+    public override void AddDistanceToMove(Vector2 distance)
     {
         throw new System.NotImplementedException();
     }

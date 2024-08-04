@@ -17,7 +17,7 @@ public class Polygon : Shape
         CollisionDetectionManager.instance.AddCollider(this);
     }
 
-    public override float AddDistanceToMove()
+    public override void AddDistanceToMove(Vector2 distance)
     {
         throw new System.NotImplementedException();
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CollisionChecker
 {
-    public bool IsColliding(Shape s1,  Shape s2)
+    public bool IsColliding(Shape s1, Shape s2)
     {
         // Both colliders are circle
         if (s1 is Circle && s2 is Circle)
@@ -14,24 +14,21 @@ public class CollisionChecker
         }
 
         // If both are rectangles
-        else if(s1 is Rectangle && s2 is Rectangle)
+        else if (s1 is Rectangle && s2 is Rectangle)
         {
             return IsColliding((Rectangle)s1, (Rectangle)s2);
         }
 
-        else if(s1 is Rectangle && s2 is Circle)
+        else if (s1 is Circle && s2 is Rectangle)
         {
-            if (s1 is Circle && s2 is Rectangle)
-            {
-                return IsColliding((Circle)s1, (Rectangle)s2);
-            }
-
-            else
-            {
-                return IsColliding((Rectangle)s1, (Circle)s2);
-            }
+            return IsColliding((Circle)s1, (Rectangle)s2);
         }
-        
+
+        else if (s1 is Rectangle && s2 is Circle)
+        {
+            return IsColliding((Rectangle)s1, (Circle)s2);
+        }
+
         return false;
     }
 
@@ -59,7 +56,7 @@ public class CollisionChecker
         //B1.y.max > B2.y.min
         //B1.y.min < B2.y.max
 
-        isColliding = 
+        isColliding =
             ((r1.V2.x + r1.offset.x) > (r2.V1.x + r2.offset.x) &&
             (r1.V1.x + r1.offset.x) < (r2.V2.x + r2.offset.x)) &&
             ((r1.V2.y + r1.offset.y) > (r2.V1.y + r2.offset.y) &&
@@ -71,6 +68,26 @@ public class CollisionChecker
     public bool IsColliding(Rectangle r, Circle c)
     {
         bool isColliding = false;
+
+        Vector2 recCenter = r.GetCenter();
+        float dx = Mathf.Abs(c.Center.x + c.offset.x - recCenter.x+r.offset.x);
+        float dy = Mathf.Abs(c.Center.y + c.offset.y - recCenter.y+r.offset.y);
+
+        
+        if (dx > (r.Width / 2) + c.Radius || dy > (r.Height / 2) + c.Radius)
+        {
+            return false;
+        }
+
+        if (dx <= (r.Width / 2) || dy <= r.Height / 2)
+        {
+            return true;
+        }
+
+        float cornerDistanceSq = (dx - r.Width / 2) * (dx - r.Width / 2) +
+                                    (dy - r.Height / 2) * (dy - r.Height / 2);
+
+        isColliding = (cornerDistanceSq <= (c.Radius * c.Radius));
 
         return isColliding;
     }

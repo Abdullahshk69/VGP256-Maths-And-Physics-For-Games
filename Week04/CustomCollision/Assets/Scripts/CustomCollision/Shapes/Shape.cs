@@ -9,7 +9,7 @@ public abstract class Shape : MonoBehaviour
     abstract public bool CheckCollision<T>(T other) where T : Shape;
 
     abstract public void DrawShape();
-    abstract public float AddDistanceToMove();
+    abstract public void AddDistanceToMove(Vector2 distance);
     abstract public float CheckHowMuchCollisionDistance<T>(T other) where T : Shape;
     abstract public void AddCollisionToManager();
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -106,7 +107,25 @@ public class Movement : MonoBehaviour, ICollision
 
     void ICollision.OnCustomCollisionEnter(Shape shape)
     {
-        Debug.Log(shape);
+        Debug.Log(shape.gameObject);
+        if(shape.gameObject.tag == "Wall")
+        {
+            Debug.Log("Wall");
+            Rectangle rect = (Rectangle)shape;
+            Circle circle = GetComponent<Circle>();
+
+            // First check the distance between the center of the circle and the rectangle
+            var NearestX = Mathf.Max(rect.V1.x + rect.offset.x, Mathf.Min(circle.Center.x + circle.offset.x, rect.V1.x + rect.offset.x + rect.Width));
+            var NearestY = Mathf.Max(rect.V1.y + rect.offset.y, Mathf.Min(circle.Center.y + circle.offset.y, rect.V1.y + rect.offset.y + rect.Width));
+            var dist = new Vector2(circle.Center.x + circle.offset.x - NearestX, circle.Center.y + circle.offset.y - NearestY);
+
+            Debug.Log("Nearest X = " + NearestX + ", Nearest Y" + NearestY);
+            Debug.Log("Dist = " + dist);
+
+            var penetrationDepth = circle.Radius - dist.magnitude;
+            var penetrationVector = dist.normalized * penetrationDepth;
+            circle.AddDistanceToMove(penetrationVector);
+        }
     }
 
 }

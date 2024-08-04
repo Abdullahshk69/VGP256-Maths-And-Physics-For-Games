@@ -7,7 +7,7 @@ public class Circle : Shape
     private Vector2 center;
     [SerializeField] private float radius;
 
-    public Vector2 Center { get { return center; } }
+    public Vector2 Center { get { return center; } set { this.center = Center; } }
     public float Radius { get { return radius; } }
 
     private void Start()
@@ -21,9 +21,10 @@ public class Circle : Shape
         center = transform.position;
     }
 
-    public override float AddDistanceToMove()
+    public override void AddDistanceToMove(Vector2 distance)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Distance: " + distance);
+        transform.position += (Vector3)distance;
     }
 
     public override bool CheckCollision<T>(T other)

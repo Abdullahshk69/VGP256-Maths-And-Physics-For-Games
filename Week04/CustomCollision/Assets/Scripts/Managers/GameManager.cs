@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
     // Key
     public int KeyInventory {  get; set; }
 
-    public event EventHandler gainKeyEvent;
-
     // maybe use game manager to detect collision
 
     private void Awake()
@@ -20,8 +18,8 @@ public class GameManager : MonoBehaviour
         KeyInventory = 0;    
     }
 
-    public void ObtainKey()
+    public void ObtainKey(string keyTag)
     {
-        EventManager.OnPickingUpKey();
+        KeyInventory |= KeyManager.instance.GetKey(keyTag);
     }
 }

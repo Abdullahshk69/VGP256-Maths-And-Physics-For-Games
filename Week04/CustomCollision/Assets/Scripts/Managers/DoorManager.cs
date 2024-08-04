@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorManager : MonoBehaviour
 {
+    public static DoorManager instance;
+
     Dictionary<string, int> doors;
 
     readonly int redDoor = 1 << 0;
@@ -12,6 +14,7 @@ public class DoorManager : MonoBehaviour
 
     private void Start()
     {
+        instance = this;
         doors = new Dictionary<string, int>
         {
             { "Red", redDoor },
