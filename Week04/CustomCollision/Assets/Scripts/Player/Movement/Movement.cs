@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 enum PlayerState
 {
@@ -24,41 +25,18 @@ public class Movement : MonoBehaviour, ICollision
     SpriteRenderer sprite;
 
     [SerializeField]
-    Animator animator;
+    Animator animator;    
 
     Vector2 moveVelocity;
-
-    bool firstJump;
-    bool grounded;
-
-    
-
-    private void Start()
-    {
-        
-    }
 
     private void FixedUpdate()
     {
         rb.velocity = moveVelocity * moveSpeed;
-        if(firstJump && grounded)
-        {
-            // jump
-            firstJump = false;
-        }
     }
 
     private void Update()
     {
         UpdateAnimationState();
-    }
-
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if(context.phase == InputActionPhase.Started && grounded)
-        {
-            firstJump = true;
-        }
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -108,19 +86,16 @@ public class Movement : MonoBehaviour, ICollision
     void ICollision.OnCustomCollisionEnter(Shape shape)
     {
         Debug.Log(shape.gameObject);
-        if(shape.gameObject.tag == "Wall")
+        if(shape.gameObject.tag == "Wall" || shape.gameObject.tag == "Door")
         {
-            Debug.Log("Wall");
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             Rectangle rect = (Rectangle)shape;
             Circle circle = GetComponent<Circle>();
 
             // First check the distance between the center of the circle and the rectangle
             var NearestX = Mathf.Max(rect.V1.x + rect.offset.x, Mathf.Min(circle.Center.x + circle.offset.x, rect.V1.x + rect.offset.x + rect.Width));
-            var NearestY = Mathf.Max(rect.V1.y + rect.offset.y, Mathf.Min(circle.Center.y + circle.offset.y, rect.V1.y + rect.offset.y + rect.Width));
+            var NearestY = Mathf.Max(rect.V1.y + rect.offset.y, Mathf.Min(circle.Center.y + circle.offset.y, rect.V1.y + rect.offset.y + rect.Height));
             var dist = new Vector2(circle.Center.x + circle.offset.x - NearestX, circle.Center.y + circle.offset.y - NearestY);
-
-            Debug.Log("Nearest X = " + NearestX + ", Nearest Y" + NearestY);
-            Debug.Log("Dist = " + dist);
 
             var penetrationDepth = circle.Radius - dist.magnitude;
             var penetrationVector = dist.normalized * penetrationDepth;

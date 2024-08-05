@@ -9,6 +9,8 @@ public class Rectangle : Shape
     private Vector2 center;
     private Vector2 previousCenter;
 
+    [SerializeField] private bool useSprite;
+
     public Vector2 V1 { get { return v1; } }
     public Vector2 V2 { get {  return v2; } }
 
@@ -17,22 +19,41 @@ public class Rectangle : Shape
 
     private void Start()
     {
-        if(TryGetComponent(out SpriteRenderer sprite))
+        center = transform.position;
+        previousCenter = transform.position;
+
+        if (TryGetComponent(out SpriteRenderer sprite) && useSprite)
         {
             Debug.Log("Bot left: " + sprite.sprite.bounds.min
                 + "\nTop Right: " + sprite.sprite.bounds.max);
 
-            v1 = sprite.sprite.bounds.min;
-            v2 = sprite.sprite.bounds.max;
-        }
-        //center = transform.position;
-        //previousCenter = transform.position;
-        ////Vector2 temp1 = v1;
-        ////v1 = center - (v1 + v2) / 2;
-        ////v2 = center - (v2 + temp1) / 2;
+            v1 = sprite.sprite.bounds.min * (Vector2)transform.localScale;
+            v2 = sprite.sprite.bounds.max * (Vector2)transform.localScale;
 
-        //v1 = center - v1;
-        //v2 = center + v2;
+            v1 = center + v1;
+            v2 = center + v2;
+        }
+
+        else
+        {
+            float halfWidth = Width / 2;
+            float halfHeight = Height / 2;
+
+            v1.x = center.x - halfWidth;
+            v1.y = center.y - halfHeight;
+
+            v2.x = center.x + halfWidth;
+            v2.y = center.y + halfHeight;
+        }
+       
+        //Vector2 temp1 = v1;
+        //v1 = center - (v1 + v2) / 2;
+        //v2 = center + ((v2 + temp1) / 2);
+
+        //Debug.Log("Object: " + name + "Center: " + center);
+
+
+        
 
         AddCollisionToManager();
     }

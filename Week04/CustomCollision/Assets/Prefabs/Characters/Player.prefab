@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6438936348851087225}
   - component: {fileID: 3715669601776018621}
   - component: {fileID: 8709734162049004574}
-  - component: {fileID: 3966545214350033867}
+  - component: {fileID: 4000756513397865085}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -159,10 +159,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 50455647-8eb4-4bb6-91f4-fe79ca7501e3
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 32158a40-f4f0-4344-9173-b0c4a5265c0e
-    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -220,7 +216,7 @@ MonoBehaviour:
   isTrigger: 0
   offset: {x: -0.02, y: -0.37}
   radius: 0.55
---- !u!114 &3966545214350033867
+--- !u!114 &4000756513397865085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,13 +225,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1915563696649390335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e06634955dd14498c39171ccb696e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d911c0d258761b43b83242da0ec0c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTrigger: 1
-  offset: {x: -0.28, y: -1.08}
-  v1: {x: 0, y: 0}
-  v2: {x: 0.5, y: 0.1}
+  spawnPoint: {fileID: 0}
 --- !u!1 &6272097743967570513
 GameObject:
   m_ObjectHideFlags: 0
