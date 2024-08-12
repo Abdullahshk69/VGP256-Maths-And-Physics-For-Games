@@ -11,8 +11,14 @@ public class KeyTagAttacher : MonoBehaviour, ICollision
         if(shape.gameObject.tag == "Player")
         {
             GameManager.Instance.ObtainKey(keyTag.keyTag);
-            CollisionDetectionManager.instance.RemoveCollider(GetComponent<Shape>());
+            this.gameObject.SetActive(false);
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+            CollisionDetectionManager.instance.RemoveCollider(GetComponent<Shape>());
+        
     }
 }

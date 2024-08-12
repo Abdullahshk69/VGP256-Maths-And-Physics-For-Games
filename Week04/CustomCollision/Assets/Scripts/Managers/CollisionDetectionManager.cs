@@ -44,15 +44,15 @@ public class CollisionDetectionManager : MonoBehaviour
 
         for (i = 0; i < shapes.Count; i++)
         {
-            //if(removedCollider)
+            //if (removedCollider)
             //{
             //    removedCollider = false;
             //    break;
             //}
 
-            for(j = i+1; j < shapes.Count; j++)
+            for (j = i+1; j < shapes.Count; j++)
             {
-                //if(removedCollider)
+                //if (removedCollider)
                 //{
                 //    break;
                 //}

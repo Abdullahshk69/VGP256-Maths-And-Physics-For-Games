@@ -132,9 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTrigger: 0
   offset: {x: 0, y: 0}
-  v1: {x: 0, y: 0}
-  v2: {x: 0, y: 0}
-  useSprite: 1
+  v1: {x: -1, y: -0.8}
+  v2: {x: 0.65, y: 0.17}
+  useSprite: 0
 --- !u!95 &8730614052236412766
 Animator:
   serializedVersion: 5

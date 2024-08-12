@@ -86,7 +86,9 @@ public class Movement : MonoBehaviour, ICollision
     void ICollision.OnCustomCollisionEnter(Shape shape)
     {
         Debug.Log(shape.gameObject);
-        if(shape.gameObject.tag == "Wall" || shape.gameObject.tag == "Door")
+        if (shape.gameObject.CompareTag("Wall")
+            || shape.gameObject.CompareTag("Door")
+            )
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             Rectangle rect = (Rectangle)shape;
@@ -99,8 +101,11 @@ public class Movement : MonoBehaviour, ICollision
 
             var penetrationDepth = circle.Radius - dist.magnitude;
             var penetrationVector = dist.normalized * penetrationDepth;
+
+            Debug.Log("Object " + shape.gameObject.name + " triggered the distance");
             circle.AddDistanceToMove(penetrationVector);
         }
+        else return;
     }
 
 }

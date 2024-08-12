@@ -15,9 +15,14 @@ public class DoorTagAttacher : MonoBehaviour, ICollision
             if((DoorManager.instance.GetDoorKey(doorTag.doorTag) & GameManager.Instance.KeyInventory) != 0)
             {
                 GameManager.Instance.KeyInventory &= ~DoorManager.instance.GetDoorKey(doorTag.doorTag);
-                CollisionDetectionManager.instance.RemoveCollider(GetComponent<Shape>());
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+                CollisionDetectionManager.instance.RemoveCollider(GetComponent<Shape>());
+        
     }
 }
