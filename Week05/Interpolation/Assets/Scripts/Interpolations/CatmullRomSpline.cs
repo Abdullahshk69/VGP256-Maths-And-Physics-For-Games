@@ -31,15 +31,21 @@ public class CatmullRomSpline : MonoBehaviour
             }
         }
 
-        if(curIndex == points.Length - 2)
+        if(curIndex == 0)
         {
             interpolate.transform.position =
                 QuadraticBezierCurve.QuadraticInterpolation(points[curIndex].position, (points[curIndex + 1].position) / 2, points[curIndex + 1].position, t.value);
         }
+
+        else if(curIndex == points.Length - 2)
+        {
+            interpolate.transform.position =
+                QuadraticBezierCurve.QuadraticInterpolation(points[curIndex].position, (points[curIndex - 1].position + points[curIndex + 1].position) / 2, points[curIndex + 1].position, t.value);
+        }
         else
         {
             interpolate.transform.position =
-            QuadraticBezierCurve.QuadraticInterpolation(points[curIndex].position, (points[curIndex + 2].position + points[curIndex + 1].position) / 2, points[curIndex + 1].position, t.value);
+                QuadraticBezierCurve.QuadraticInterpolation(points[curIndex].position, (points[curIndex-1].position + points[curIndex + 1].position) / 2, points[curIndex + 1].position, t.value);
         }
         //interpolate.transform.position = 
         //    QuadraticBezierCurve.QuadraticInterpolation(points[curIndex].position, (points[curIndex+2].position + points[curIndex+1].position) / 2, points[curIndex+1].position, t.value);        
