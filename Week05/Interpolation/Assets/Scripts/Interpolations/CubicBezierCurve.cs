@@ -17,8 +17,8 @@ public class CubicBezierCurve : MonoBehaviour
 
     public static Vector2 CubicInterpolation(Vector2 A, Vector2 B, Vector2 C, Vector2 D, float t)
     {
-        Vector2 Q =QuadraticBezierCurve.QuadraticInterpolation(A, B, C, t);
-        Vector2 R =QuadraticBezierCurve.QuadraticInterpolation(B, C, D, t);
+        Vector2 Q = QuadraticBezierCurve.QuadraticInterpolation(A, B, C, t);
+        Vector2 R = QuadraticBezierCurve.QuadraticInterpolation(B, C, D, t);
         Vector2 interpolate = LinearInterpolation.LinearInterpolate(Q, R, t);
         return interpolate;
     }

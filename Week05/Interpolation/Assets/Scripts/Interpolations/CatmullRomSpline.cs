@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,13 +14,13 @@ public class CatmullRomSpline : MonoBehaviour
     {
         if (t.value == 1 && curIndex + 1 < points.Length - 1)
         {
-            if(Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0))
             {
                 t.value = 0;
                 curIndex++;
             }
         }
-        else if(t.value == 0 && curIndex > 0)
+        else if (t.value == 0 && curIndex > 0)
         {
             if (Input.GetMouseButtonUp(0))
             {
@@ -31,23 +29,39 @@ public class CatmullRomSpline : MonoBehaviour
             }
         }
 
-        if(curIndex == 0)
+        interpolate.transform.position =
+                CubicHermiteCurveInterpolate(points[ClampListPos(curIndex - 1)].position, points[curIndex].position, points[ClampListPos(curIndex + 1)].position, points[ClampListPos(curIndex + 2)].position, t.value);
+    }
+
+    public static Vector2 CubicHermiteCurveInterpolate(Vector2 A, Vector2 B, Vector2 C, Vector2 D, float t)
+    {
+        Vector2 a = 2f * B;
+        Vector2 b = C - A;
+        Vector2 c = 2f * A - 5f * B + 4f * C - D;
+        Vector2 d = -A + 3f * B - 3f * C + D;
+
+        //The cubic polynomial: a + b * t + c * t^2 + d * t^3
+        Vector2 pos = 0.5f * (a + (b * t) + (c * t * t) + (d * t * t * t));
+
+        return pos;
+    }
+
+    public int ClampListPos(int index)
+    {
+        if (index < 0)
         {
-            interpolate.transform.position =
-                QuadraticBezierCurve.QuadraticInterpolation(points[curIndex].position, (points[curIndex + 1].position) / 2, points[curIndex + 1].position, t.value);
+            index = points.Length - 1;
         }
 
-        else if(curIndex == points.Length - 2)
+        if (index > points.Length)
         {
-            interpolate.transform.position =
-                QuadraticBezierCurve.QuadraticInterpolation(points[curIndex].position, (points[curIndex - 1].position + points[curIndex + 1].position) / 2, points[curIndex + 1].position, t.value);
+            index = 1;
         }
-        else
+        else if (index > points.Length - 1)
         {
-            interpolate.transform.position =
-                QuadraticBezierCurve.QuadraticInterpolation(points[curIndex].position, (points[curIndex-1].position + points[curIndex + 1].position) / 2, points[curIndex + 1].position, t.value);
+            index = 0;
         }
-        //interpolate.transform.position = 
-        //    QuadraticBezierCurve.QuadraticInterpolation(points[curIndex].position, (points[curIndex+2].position + points[curIndex+1].position) / 2, points[curIndex+1].position, t.value);        
+
+        return index;
     }
 }
